@@ -1907,7 +1907,17 @@ class PlayState extends MusicBeatState
 		iconP1.x = healthBar.barCenter + (150 * iconP1.scale.x - 150) / 2 - iconOffset;
 		iconP2.x = healthBar.barCenter - (150 * iconP2.scale.x) / 2 - iconOffset * 2;
 	}
+		local turnvalue = 20
+                function onBeatHit()
+                turnvalue = 10 -- the icon shit
+                if curBeat % 4 == 2 then
+                turnvalue = -720
+                end
 
+               setProperty('iconP2.angle',-turnvalue)
+               setProperty('iconP1.angle',turnvalue)
+
+        doTweenAngle('iconTween1','iconP1',2,crochet/1000,'circOut') doTweenAngle('iconTween2','iconP2',2,crochet/1000,'circOut')
 	var iconsAnimations:Bool = true;
 	function set_health(value:Float):Float // You can alter how icon animations work here
 	{
